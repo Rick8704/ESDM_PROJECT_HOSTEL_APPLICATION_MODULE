@@ -19,8 +19,18 @@
                 <html:div>
                     <html:h1 class="portalTitle">Hostel Management System Portal</html:h1>
                 </html:div>
-                <html:div class="portalWelcome">
-                    Welcome back, Ahmad bin Hassan (AI210023)
+                <html:div class="portalHeaderRight">
+                    <html:div class="portalWelcome">
+                        Welcome back, Ahmad bin Hassan (AI210023)
+                    </html:div>
+                    <html:div class="portalProfileWrapper">
+                        <html:div id="studentProfileAvatar" class="portalAvatar"></html:div>
+                        <html:div id="studentProfileMenu" class="portalProfileMenu" hidden="hidden">
+                            <html:div class="portalProfileHeader">Signed in as Student</html:div>
+                            <html:button class="portalProfileItem" data-target="student">Student Dashboard</html:button>
+                            <html:button class="portalProfileItem" data-target="admin">Switch to Admin View</html:button>
+                        </html:div>
+                    </html:div>
                 </html:div>
             </html:div>
 

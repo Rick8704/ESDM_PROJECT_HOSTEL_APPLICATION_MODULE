@@ -136,6 +136,54 @@ function roomIconSvg(type) {
     `;
 }
 
+function handleProfileMenuToggle() {
+    const avatar = document.getElementById("profileAvatar");
+    const menu = document.getElementById("profileMenu");
+    if (!avatar || !menu) return;
+
+    avatar.addEventListener("click", () => {
+        const hidden = menu.hasAttribute("hidden");
+        if (hidden) {
+            menu.removeAttribute("hidden");
+        } else {
+            menu.setAttribute("hidden", "true");
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (menu.hasAttribute("hidden")) return;
+        if (menu.contains(e.target) || avatar.contains(e.target)) return;
+        menu.setAttribute("hidden", "true");
+    });
+
+    menu.querySelectorAll(".profile-menu-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const target = btn.getAttribute("data-target");
+            if (target === "admin") {
+                const hash = "#/admin";
+                try {
+                    if (window.top && window.top !== window) {
+                        window.top.location.hash = hash;
+                    } else {
+                        window.location.hash = hash;
+                    }
+                } catch (e) {
+                    window.location.hash = hash;
+                }
+            } else {
+                // Student main: clear hash so RouteMain ('') is used
+                try {
+                    const win = window.top && window.top !== window ? window.top : window;
+                    const base = win.location.href.split("#")[0];
+                    win.location.href = base;
+                } catch (e) {
+                    window.location.href = window.location.href.split("#")[0];
+                }
+            }
+        });
+    });
+}
+
 // Render blocks
 function renderBlocks(blocks) {
     const container = document.getElementById('blocksContainer');
@@ -271,5 +319,6 @@ function handleApply(blockName, roomType) {
 document.addEventListener('DOMContentLoaded', () => {
     renderBlocks(filteredBlocks);
     handleSearch();
+    handleProfileMenuToggle();
 });
 

@@ -19,7 +19,7 @@
 .portalHeader{
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     gap: 12px;
     margin-bottom: 12px;
 }
@@ -34,6 +34,60 @@
     font-size: 14px;
     color: #2b67b3;
     white-space: nowrap;
+}
+
+.portalHeaderRight{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.portalProfileWrapper{
+    position: relative;
+}
+
+.portalAvatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    cursor: pointer;
+}
+
+.portalProfileMenu{
+    position: absolute;
+    right: 0;
+    margin-top: 8px;
+    width: 190px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(15,23,42,0.26);
+    padding: 8px 0;
+    z-index: 20;
+}
+
+.portalProfileMenu[hidden]{
+    display: none;
+}
+
+.portalProfileHeader{
+    padding: 6px 12px 8px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.portalProfileItem{
+    width: 100%;
+    padding: 8px 12px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.portalProfileItem:hover{
+    background: #f3f4f6;
 }
 
 .portalStats{

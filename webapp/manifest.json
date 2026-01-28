@@ -94,6 +94,13 @@
           "target": [
             "TargetHostelApplication"
           ]
+        },
+        {
+          "name": "RouteAdminMain",
+          "pattern": "admin",
+          "target": [
+            "TargetAdminMain"
+          ]
         }
       ],
       "targets": {
@@ -108,6 +115,10 @@
         "TargetHostelApplication": {
           "id": "HostelApplicationShell",
           "name": "HostelApplicationShell"
+        },
+        "TargetAdminMain": {
+          "id": "AdminMainShell",
+          "name": "AdminMainShell"
         }
       }
     },

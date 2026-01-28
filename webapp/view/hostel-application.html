@@ -23,7 +23,14 @@
                 <button class="icon-btn" title="Language">A</button>
                 <button class="icon-btn" title="Search">🔍</button>
                 <button class="icon-btn notif" title="Notifications">🔔<span class="badge">1</span></button>
-                <div class="avatar"></div>
+                <div class="profile-wrapper">
+                    <div class="avatar" id="profileAvatar"></div>
+                    <div class="profile-menu" id="profileMenu" hidden>
+                        <div class="profile-menu-header">Signed in as Student</div>
+                        <button class="profile-menu-item" data-target="student">Login as Student</button>
+                        <button class="profile-menu-item" data-target="admin">Login as Admin</button>
+                    </div>
+                </div>
             </div>
         </header>
 
