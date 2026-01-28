@@ -74,17 +74,29 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
+          "name": "RouteMain",
+          "pattern": "",
           "target": [
-            "TargetView1"
+            "TargetMain"
+          ]
+        }
+        ,
+        {
+          "name": "RouteRoomAvailability",
+          "pattern": "room-availability",
+          "target": [
+            "TargetRoomAvailability"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
+        },
+        "TargetRoomAvailability": {
+          "id": "RoomAvailabilityShell",
+          "name": "RoomAvailabilityShell"
         }
       }
     },

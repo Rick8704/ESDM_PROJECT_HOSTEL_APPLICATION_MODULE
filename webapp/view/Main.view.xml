@@ -1,0 +1,130 @@
+<mvc:View
+    controllerName="project1.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    displayBlock="true">
+    <Page id="mainPage" showHeader="false" enableScrolling="true">
+        <html:div class="portalWrap">
+            <html:div class="portalCrumbs">
+                <html:span class="portalCrumbMuted">Dashboard</html:span>
+                <html:span class="portalCrumbSep">/</html:span>
+                <html:span>Home</html:span>
+                <html:span class="portalCrumbSep">/</html:span>
+                <html:span>Hostel Management System</html:span>
+            </html:div>
+
+            <html:div class="portalHeader">
+                <html:div>
+                    <html:h1 class="portalTitle">Hostel Management System Portal</html:h1>
+                </html:div>
+                <html:div class="portalWelcome">
+                    Welcome back, Ahmad bin Hassan (AI210023)
+                </html:div>
+            </html:div>
+
+            <html:div class="portalStats">
+                <html:div class="statCard">
+                    <html:div class="statIcon statIcon--green" aria-hidden="true">
+                        <html:span>🏠</html:span>
+                    </html:div>
+                    <html:div class="statBody">
+                        <html:div class="statLabel">Active</html:div>
+                        <html:div class="statSub">Hostel Status</html:div>
+                    </html:div>
+                </html:div>
+                <html:div class="statCard">
+                    <html:div class="statIcon statIcon--orange" aria-hidden="true">
+                        <html:span>⏱</html:span>
+                    </html:div>
+                    <html:div class="statBody">
+                        <html:div class="statLabel">Checked Out</html:div>
+                        <html:div class="statSub">Current Status</html:div>
+                    </html:div>
+                </html:div>
+                <html:div class="statCard">
+                    <html:div class="statIcon statIcon--blue" aria-hidden="true">
+                        <html:span>🛠</html:span>
+                    </html:div>
+                    <html:div class="statBody">
+                        <html:div class="statLabel">1</html:div>
+                        <html:div class="statSub">Pending Tickets</html:div>
+                    </html:div>
+                </html:div>
+                <html:div class="statCard statCard--right">
+                    <html:div class="statBody">
+                        <html:div class="statLabel">RM 777.00</html:div>
+                        <html:div class="statSub">Outstanding</html:div>
+                    </html:div>
+                </html:div>
+            </html:div>
+
+            <html:div class="portalGrid">
+                <html:div class="moduleCard">
+                    <html:div class="moduleCardHeader moduleCardHeader--blue">
+                        <html:div class="moduleHeaderTitle">Maintenance Request</html:div>
+                        <html:div class="moduleHeaderSub">Report hostel facility issues</html:div>
+                    </html:div>
+                    <html:div class="moduleCardBody">
+                        <html:div class="moduleRows">
+                            <html:div class="moduleRow"><html:span>Pending Requests</html:span><html:span class="badge badge--warn">0</html:span></html:div>
+                            <html:div class="moduleRow"><html:span>In Progress</html:span><html:span class="badge badge--info">0</html:span></html:div>
+                            <html:div class="moduleRow"><html:span>Completed</html:span><html:span class="badge badge--ok">1</html:span></html:div>
+                        </html:div>
+                        <html:a class="moduleBtn moduleBtn--blue" href="#/maintenance">View Maintenance Dashboard →</html:a>
+                    </html:div>
+                </html:div>
+
+                <html:div class="moduleCard">
+                    <html:div class="moduleCardHeader moduleCardHeader--green">
+                        <html:div class="moduleHeaderTitle">Apply Hostel</html:div>
+                        <html:div class="moduleHeaderSub">Submit hostel accommodation application</html:div>
+                    </html:div>
+                    <html:div class="moduleCardBody">
+                        <html:div class="highlightBox">
+                            <html:div class="highlightTitle">Current Application</html:div>
+                            <html:div class="highlightSub">Status: Approved</html:div>
+                            <html:div class="highlightSub">Room: A-204</html:div>
+                        </html:div>
+                        <html:div class="moduleNote">
+                            Next Application Period: Session 2024/2025 - Opens May 1, 2024
+                        </html:div>
+                        <html:a class="moduleBtn moduleBtn--green" href="#/room-availability">View Room Availability →</html:a>
+                    </html:div>
+                </html:div>
+
+                <html:div class="moduleCard">
+                    <html:div class="moduleCardHeader moduleCardHeader--orange">
+                        <html:div class="moduleHeaderTitle">Digital Check In/Out</html:div>
+                        <html:div class="moduleHeaderSub">Manage your hostel check-in status</html:div>
+                    </html:div>
+                    <html:div class="moduleCardBody">
+                        <html:div class="moduleNote">
+                            Check-in system closed. Room A-204
+                        </html:div>
+                        <html:a class="moduleBtn moduleBtn--orange" href="#/checkin">View Check-In Page →</html:a>
+                    </html:div>
+                </html:div>
+
+                <html:div class="moduleCard">
+                    <html:div class="moduleCardHeader moduleCardHeader--red">
+                        <html:div class="moduleHeaderTitle">Financial Status</html:div>
+                        <html:div class="moduleHeaderSub">View payment history and dues</html:div>
+                    </html:div>
+                    <html:div class="moduleCardBody">
+                        <html:div class="moduleRows">
+                            <html:div class="moduleRow"><html:span>Payment Status</html:span><html:span class="badge badge--ok">Paid</html:span></html:div>
+                            <html:div class="moduleRow"><html:span>Outstanding Balance</html:span><html:span class="money">RM 777.00</html:span></html:div>
+                        </html:div>
+                        <html:a class="moduleBtn moduleBtn--red" href="#/payment">View Payment History →</html:a>
+                    </html:div>
+                </html:div>
+            </html:div>
+
+            <html:div class="portalFooterSpace"></html:div>
+        </html:div>
+    </Page>
+</mvc:View>
+
+
