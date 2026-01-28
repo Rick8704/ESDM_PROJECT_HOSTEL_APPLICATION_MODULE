@@ -248,8 +248,23 @@ function handleSearch() {
 
 // Handle apply button click
 function handleApply(blockName, roomType) {
-    alert(`Application submitted for ${roomType} in ${blockName}`);
-    // Here you would typically navigate to an application form or show a modal
+    const params = new URLSearchParams({
+        block: blockName,
+        roomType
+    });
+    const nextHash = `#/hostel-application?${params.toString()}`;
+
+    // If this page is inside an iframe (UI5 shell), update the parent hash so UI5 routing works.
+    try {
+        if (window.top && window.top !== window) {
+            window.top.location.hash = nextHash;
+            return;
+        }
+    } catch (e) {
+        // cross-origin protection; fallback to current window
+    }
+
+    window.location.hash = nextHash;
 }
 
 // Initialize

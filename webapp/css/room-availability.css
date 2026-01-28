@@ -437,6 +437,10 @@ body {
     cursor: not-allowed;
 }
 
+.apply-btn:enabled {
+    text-decoration: none;
+}
+
 /* Pagination */
 .pagination {
     display: flex;

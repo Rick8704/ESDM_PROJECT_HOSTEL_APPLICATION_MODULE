@@ -87,6 +87,13 @@
           "target": [
             "TargetRoomAvailability"
           ]
+        },
+        {
+          "name": "RouteHostelApplication",
+          "pattern": "hostel-application:?query:",
+          "target": [
+            "TargetHostelApplication"
+          ]
         }
       ],
       "targets": {
@@ -97,6 +104,10 @@
         "TargetRoomAvailability": {
           "id": "RoomAvailabilityShell",
           "name": "RoomAvailabilityShell"
+        },
+        "TargetHostelApplication": {
+          "id": "HostelApplicationShell",
+          "name": "HostelApplicationShell"
         }
       }
     },
