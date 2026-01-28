@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Hostel Dashboard</title>
+    <link rel="stylesheet" href="../css/admin-main.css">
+</head>
+<body>
+    <div class="admin-app">
+        <!-- Top bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <span class="logo-text">UTHM</span>
+                    <span class="logo-role">(Admin)</span>
+                </div>
+                <nav class="top-nav">
+                    <a href="#" class="nav-link active">Academic &amp; Learning</a>
+                    <a href="#" class="nav-link">Communication</a>
+                    <a href="#" class="nav-link">Administration</a>
+                    <a href="#" class="nav-link">Add On Modules</a>
+                    <a href="#" class="nav-link">Accounts</a>
+                </nav>
+            </div>
+            <div class="topbar-right">
+                <button class="icon-btn" title="Language">A</button>
+                <button class="icon-btn" title="Search">🔍</button>
+                <button class="icon-btn notif" title="Notifications">
+                    🔔
+                    <span class="badge">3</span>
+                </button>
+                <div class="profile-wrapper">
+                    <div class="avatar" id="profileAvatar"></div>
+                    <div class="profile-menu" id="profileMenu" hidden>
+                        <div class="profile-menu-header">Signed in as Admin</div>
+                        <button class="profile-menu-item" data-target="student">Switch to Student View</button>
+                        <button class="profile-menu-item" data-target="admin">Admin Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <span>Dashboard</span> / <span>Home</span> / <span>Hostel Management System</span>
+        </nav>
+
+        <main class="main">
+            <!-- Quick stats -->
+            <section class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-label">Hostel Applications</div>
+                    <div class="stat-value" id="statTotalApps">245</div>
+                    <div class="stat-sub">Applications received</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Pending Approvals</div>
+                    <div class="stat-value" id="statPending">67</div>
+                    <div class="stat-sub">Awaiting review</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Occupied Rooms</div>
+                    <div class="stat-value">1,092</div>
+                    <div class="stat-sub">Out of 1,348 total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Check-in Today</div>
+                    <div class="stat-value">34</div>
+                    <div class="stat-sub">New room schedules</div>
+                </div>
+            </section>
+
+            <!-- Applications management -->
+            <section class="apps-section">
+                <div class="apps-header">
+                    <div>
+                        <h2 class="apps-title">Hostel Application Management</h2>
+                        <p class="apps-sub">Review and manage student hostel applications.</p>
+                    </div>
+                    <div class="apps-summary">
+                        <div class="summary-pill">
+                            <span>Total Applications</span>
+                            <strong id="sumTotal">5</strong>
+                        </div>
+                        <div class="summary-pill">
+                            <span>Pending</span>
+                            <strong id="sumPending">2</strong>
+                        </div>
+                        <div class="summary-pill">
+                            <span>Approved</span>
+                            <strong id="sumApproved">2</strong>
+                        </div>
+                        <div class="summary-pill">
+                            <span>Rejected</span>
+                            <strong id="sumRejected">1</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apps-toolbar">
+                    <div class="filter-placeholder">Filter</div>
+                    <div class="search-box">
+                        <input id="searchInput" type="text" placeholder="Search by name, student ID, or email...">
+                    </div>
+                </div>
+
+                <div class="apps-table-wrap">
+                    <table class="apps-table">
+                        <thead>
+                            <tr>
+                                <th>Student Info</th>
+                                <th>Contact</th>
+                                <th>Program</th>
+                                <th>Preferences</th>
+                                <th>Submitted</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appsTbody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            Copy right @ 2021 LMS Dashboard
+        </footer>
+    </div>
+
+    <!-- Application Details Modal -->
+    <div class="modal-overlay" id="detailsOverlay" hidden>
+        <div class="details-modal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+            <button class="details-close" id="detailsCloseX" aria-label="Close">×</button>
+            <h2 class="details-title" id="detailsTitle">Application Details</h2>
+
+            <div class="details-grid">
+                <div>
+                    <div class="details-label">Full Name</div>
+                    <div class="details-value" id="dFullName"></div>
+
+                    <div class="details-label">Email</div>
+                    <div class="details-value" id="dEmail"></div>
+
+                    <div class="details-label">Program</div>
+                    <div class="details-value" id="dProgram"></div>
+
+                    <div class="details-label">Gender</div>
+                    <div class="details-value" id="dGender"></div>
+                </div>
+                <div>
+                    <div class="details-label">Student ID</div>
+                    <div class="details-value" id="dStudentId"></div>
+
+                    <div class="details-label">Phone</div>
+                    <div class="details-value" id="dPhone"></div>
+
+                    <div class="details-label">Year of Study</div>
+                    <div class="details-value" id="dYear"></div>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <div class="details-section-title">Hostel Preferences</div>
+                <div class="details-grid three">
+                    <div>
+                        <div class="details-label">Block Preference</div>
+                        <div class="details-value" id="dBlock"></div>
+                    </div>
+                    <div>
+                        <div class="details-label">Room Type</div>
+                        <div class="details-value" id="dRoomType"></div>
+                    </div>
+                    <div>
+                        <div class="details-label">Floor Preference</div>
+                        <div class="details-value" id="dFloor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <div class="details-section-title">Application Status</div>
+                <div class="details-status-row">
+                    <div>
+                        <span class="details-label-inline">Submitted Date</span>
+                        <span class="details-value-inline" id="dSubmitted"></span>
+                        <span class="status-pill" id="dStatusPill"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-actions">
+                <button class="btn-approve" id="detailsApprove">Approve Application</button>
+                <button class="btn-reject" id="detailsReject">Reject Application</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin-main.js"></script>
+</body>
+</html>
+
+
