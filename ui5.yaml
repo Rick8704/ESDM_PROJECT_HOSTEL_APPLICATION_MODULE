@@ -24,5 +24,6 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
+        startPath: /index.html
         flp:
           theme: sap_horizon
