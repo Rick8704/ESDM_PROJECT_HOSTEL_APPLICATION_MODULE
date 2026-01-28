@@ -1,0 +1,102 @@
+<mvc:View controllerName="project1.controller.RoomAvailability"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    displayBlock="true">
+    <Page id="roomAvailabilityPage" showHeader="false" enableScrolling="false">
+        <html:div class="hostel-room-availability-container">
+            <!-- Header -->
+            <html:header class="main-header">
+                <html:div class="header-left">
+                    <html:div class="logo-section">
+                        <html:span class="logo-text">UTHM</html:span>
+                        <html:span class="logo-subtext">(Student)</html:span>
+                    </html:div>
+                    <html:a href="#" class="academic-link">
+                        <html:span class="icon">🎓</html:span>
+                        Academic &amp; Learning
+                    </html:a>
+                </html:div>
+                <html:div class="header-right">
+                    <html:button class="icon-btn" title="Language">
+                        <html:span class="icon">A★</html:span>
+                    </html:button>
+                    <html:button class="icon-btn" title="Search">
+                        <html:span class="icon">🔍</html:span>
+                    </html:button>
+                    <html:button class="icon-btn notification-btn" title="Notifications">
+                        <html:span class="icon">🔔</html:span>
+                        <html:span class="notification-badge">1</html:span>
+                    </html:button>
+                    <html:div class="profile-picture">
+                        <html:img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23e0e0e0'/%3E%3Ccircle cx='20' cy='18' r='8' fill='%23ffb3ba'/%3E%3Cpath d='M 10 32 Q 20 28 30 32' stroke='%23ffb3ba' stroke-width='2' fill='none'/%3E%3C/svg%3E" alt="Profile"/>
+                    </html:div>
+                </html:div>
+            </html:header>
+
+            <!-- Breadcrumbs -->
+            <html:nav class="breadcrumbs">
+                Dashboard &gt; Home / Hostel Management System / View Room Availability
+            </html:nav>
+
+            <!-- Main Content -->
+            <html:main class="main-content">
+                <html:div class="content-header">
+                    <html:h1 class="page-title">Hostel Room Availability</html:h1>
+                    <html:p class="page-subtitle">Browse available rooms across different hostel blocks and submit your application.</html:p>
+                </html:div>
+
+                <!-- Search Bar -->
+                <html:div class="search-container">
+                    <html:div class="search-box">
+                        <html:span class="search-icon">🔍</html:span>
+                        <html:input type="text" class="search-input" placeholder="Search by block name or code..." id="searchInput"/>
+                    </html:div>
+                </html:div>
+
+                <!-- Summary Cards -->
+                <html:div class="summary-cards">
+                    <html:div class="summary-card">
+                        <html:div class="summary-label">Total Blocks</html:div>
+                        <html:div class="summary-value">4</html:div>
+                    </html:div>
+                    <html:div class="summary-card">
+                        <html:div class="summary-label">Total Rooms</html:div>
+                        <html:div class="summary-value">415</html:div>
+                    </html:div>
+                    <html:div class="summary-card">
+                        <html:div class="summary-label">Available Rooms</html:div>
+                        <html:div class="summary-value available">190</html:div>
+                    </html:div>
+                    <html:div class="summary-card">
+                        <html:div class="summary-label">Occupancy Rate</html:div>
+                        <html:div class="summary-value occupied">54%</html:div>
+                    </html:div>
+                </html:div>
+
+                <!-- Hostel Blocks -->
+                <html:div class="blocks-container" id="blocksContainer">
+                    <!-- Blocks will be rendered here -->
+                </html:div>
+
+                <!-- Pagination -->
+                <html:div class="pagination">
+                    <html:button class="page-btn active" data-page="1">1</html:button>
+                    <html:button class="page-btn" data-page="2">2</html:button>
+                </html:div>
+            </html:main>
+
+            <!-- Footer -->
+            <html:footer class="main-footer">
+                <html:div class="footer-left">
+                    Copy right @ 2021 LMS Dashboard
+                </html:div>
+                <html:div class="footer-right">
+                    <html:button class="footer-icon-btn">🏠</html:button>
+                    <html:button class="footer-icon-btn">ℹ️</html:button>
+                </html:div>
+            </html:footer>
+        </html:div>
+    </Page>
+</mvc:View>
+
