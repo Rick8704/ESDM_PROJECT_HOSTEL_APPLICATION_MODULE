@@ -6,27 +6,21 @@ const hostelBlocks = [
         rooms: [
             {
                 type: "Standard",
-                icon: "🛏️",
                 available: 25,
                 total: 50,
-                price: "RM 350/month",
-                occupancy: 50
+                price: "RM 350/month"
             },
             {
                 type: "Double",
-                icon: "🛏️🛏️",
                 available: 12,
                 total: 30,
-                price: "RM 450/month",
-                occupancy: 40
+                price: "RM 450/month"
             },
             {
                 type: "Single with Bathroom",
-                icon: "🛏️🚿",
                 available: 5,
                 total: 20,
-                price: "RM 600/month",
-                occupancy: 75
+                price: "RM 600/month"
             }
         ]
     },
@@ -36,27 +30,21 @@ const hostelBlocks = [
         rooms: [
             {
                 type: "Standard",
-                icon: "🛏️",
                 available: 30,
                 total: 60,
-                price: "RM 350/month",
-                occupancy: 50
+                price: "RM 350/month"
             },
             {
                 type: "Double",
-                icon: "🛏️🛏️",
                 available: 8,
                 total: 25,
-                price: "RM 450/month",
-                occupancy: 68
+                price: "RM 450/month"
             },
             {
                 type: "Single with Bathroom",
-                icon: "🛏️🚿",
                 available: 0,
                 total: 15,
-                price: "RM 600/month",
-                occupancy: 100
+                price: "RM 600/month"
             }
         ]
     },
@@ -66,27 +54,21 @@ const hostelBlocks = [
         rooms: [
             {
                 type: "Standard",
-                icon: "🛏️",
                 available: 40,
                 total: 80,
-                price: "RM 350/month",
-                occupancy: 50
+                price: "RM 350/month"
             },
             {
                 type: "Double",
-                icon: "🛏️🛏️",
                 available: 20,
                 total: 40,
-                price: "RM 450/month",
-                occupancy: 50
+                price: "RM 450/month"
             },
             {
                 type: "Single with Bathroom",
-                icon: "🛏️🚿",
                 available: 10,
                 total: 25,
-                price: "RM 600/month",
-                occupancy: 60
+                price: "RM 600/month"
             }
         ]
     },
@@ -96,27 +78,21 @@ const hostelBlocks = [
         rooms: [
             {
                 type: "Standard",
-                icon: "🛏️",
                 available: 35,
                 total: 70,
-                price: "RM 350/month",
-                occupancy: 50
+                price: "RM 350/month"
             },
             {
                 type: "Double",
-                icon: "🛏️🛏️",
                 available: 15,
                 total: 35,
-                price: "RM 450/month",
-                occupancy: 57
+                price: "RM 450/month"
             },
             {
                 type: "Single with Bathroom",
-                icon: "🛏️🚿",
                 available: 8,
                 total: 20,
-                price: "RM 600/month",
-                occupancy: 60
+                price: "RM 600/month"
             }
         ]
     }
@@ -125,6 +101,40 @@ const hostelBlocks = [
 let currentPage = 1;
 const itemsPerPage = 2;
 let filteredBlocks = [...hostelBlocks];
+
+function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+}
+
+function calcOccupancyPct(room) {
+    if (!room.total) return 0;
+    const occupied = room.total - room.available;
+    return clamp(Math.round((occupied / room.total) * 100), 0, 100);
+}
+
+function getProgressColor(room) {
+    if (room.available <= 0) return "red";
+    const occ = calcOccupancyPct(room);
+    if (occ >= 70) return "orange";
+    return "green";
+}
+
+function buildingIconSvg() {
+    return `
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M4 22V2h10v6h6v14H4Zm2-2h2v-2H6v2Zm0-4h2v-2H6v2Zm0-4h2v-2H6v2Zm0-4h2V4H6v4Zm4 12h2v-2h-2v2Zm0-4h2v-2h-2v2Zm0-4h2v-2h-2v2Zm0-4h2V4h-2v4Zm4 12h4v-2h-4v2Zm0-4h4v-2h-4v2Z"/>
+        </svg>
+    `;
+}
+
+function roomIconSvg(type) {
+    // simple bed-like icon for all room types to match the screenshot feel
+    return `
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M7 11a3 3 0 1 1 0-6h4a3 3 0 0 1 3 3v3h5a2 2 0 0 1 2 2v5h-2v-2H5v2H3v-7a2 2 0 0 1 2-2h2Zm0-2h5V8a1 1 0 0 0-1-1H7a1 1 0 0 0 0 2Z"/>
+        </svg>
+    `;
+}
 
 // Render blocks
 function renderBlocks(blocks) {
@@ -144,33 +154,48 @@ function renderBlocks(blocks) {
         let roomsHTML = '';
         block.rooms.forEach(room => {
             const isFullyBooked = room.available === 0;
-            const progressColor = room.occupancy >= 75 ? 'orange' : room.occupancy >= 100 ? 'red' : 'green';
+            const occupancyPct = calcOccupancyPct(room);
+            const progressColor = getProgressColor(room);
             
             roomsHTML += `
-                <div class="room-type">
-                    <div class="room-type-header">
-                        <span class="room-type-icon">${room.icon}</span>
-                        <span class="room-type-name">${room.type}</span>
+                <div class="room-row">
+                    <div class="room-row-header">
+                        <div class="room-left">
+                            <span class="room-icon">${roomIconSvg(room.type)}</span>
+                            <span class="room-name">${room.type}</span>
+                        </div>
+                        <div class="room-price">${room.price}</div>
                     </div>
-                    <div class="room-availability">${room.available} / ${room.total} available</div>
-                    <div class="room-price">${room.price}</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar ${progressColor}" style="width: ${room.occupancy}%"></div>
+                    <div class="room-meta">
+                        <span>${room.available} / ${room.total} available</span>
+                        <span class="dot"></span>
+                        <span>${occupancyPct}% occupied</span>
                     </div>
-                    ${isFullyBooked 
-                        ? '<button class="apply-btn fully-booked-btn" disabled>Fully Booked</button>'
-                        : `<button class="apply-btn" onclick="handleApply('${block.name}', '${room.type}')">Apply for ${room.type}</button>`
+                    <div class="progress-line" aria-hidden="true">
+                        <div class="progress-fill ${progressColor}" style="width: ${isFullyBooked ? 0 : occupancyPct}%"></div>
+                    </div>
+                    ${
+                        isFullyBooked
+                            ? '<button class="apply-btn" disabled>Fully Booked</button>'
+                            : `<button class="apply-btn" onclick="handleApply('${block.name}', '${room.type}')">Apply for ${room.type}</button>`
                     }
                 </div>
             `;
         });
 
         blockCard.innerHTML = `
-            <div class="block-header">
-                <div class="block-name">${block.name}</div>
-                <div class="block-code">(${block.code})</div>
+            <div class="block-top">
+                <div class="block-top-row">
+                    <div class="block-title">
+                        <span class="block-icon">${buildingIconSvg()}</span>
+                        <span>${block.name}</span>
+                    </div>
+                    <div class="block-code">${block.code}</div>
+                </div>
             </div>
-            ${roomsHTML}
+            <div class="block-body">
+                ${roomsHTML}
+            </div>
         `;
 
         container.appendChild(blockCard);
